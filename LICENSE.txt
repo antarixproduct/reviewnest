@@ -1,0 +1,53 @@
+ReviewNest Single-Business Commercial License
+Version 1.0
+
+Copyright (c) 2026. All rights reserved.
+
+This license applies to the ReviewNest source code, documentation, templates, design, and related files delivered with this package.
+
+1. License Grant
+
+The buyer receives a non-exclusive, non-transferable license to use ReviewNest for one business and one production installation.
+
+The buyer may:
+- Deploy one production instance for their own business.
+- Create local development copies for setup, testing, and backup.
+- Modify the code for their own business use.
+- Use the included documentation for internal setup and operation.
+
+2. Restrictions
+
+The buyer may not:
+- Resell, redistribute, sublicense, publish, share, or give away the source code.
+- Sell ReviewNest as a competing template, starter kit, SaaS, marketplace product, or downloadable code package.
+- Use one purchase to deploy ReviewNest for multiple unrelated businesses.
+- Remove or misrepresent this license.
+- Claim ownership of the original ReviewNest source code.
+
+3. Single-Business Scope
+
+This product is built for one business per installation. If the buyer wants to deploy it for another business, branch, client, or customer, they must purchase an additional license unless a written agreement says otherwise.
+
+4. Third-Party Services
+
+ReviewNest depends on third-party services such as MongoDB Atlas, Render, Gmail SMTP, WhatsApp, and Google review links. The buyer is responsible for complying with those services' terms, limits, pricing, policies, and account requirements.
+
+5. No Warranty
+
+ReviewNest is provided as-is and as-available. The seller does not guarantee uninterrupted operation, specific review results, Google ranking improvements, message delivery, customer responses, or compatibility with every hosting/account setup.
+
+6. Liability Limitation
+
+To the maximum extent permitted by law, the seller is not liable for indirect, incidental, special, consequential, punitive, business interruption, data loss, lost profit, account restriction, or third-party platform damages related to ReviewNest.
+
+7. Support
+
+Support, setup help, customization, maintenance, updates, and hosting assistance are provided only if explicitly included in the buyer's purchase tier or written agreement.
+
+8. Termination
+
+This license terminates automatically if the buyer violates the restrictions above. After termination, the buyer must stop using ReviewNest and delete all copies of the source code.
+
+9. Custom Agreements
+
+Any custom terms must be agreed in writing. If a signed written agreement conflicts with this file, the signed agreement controls.

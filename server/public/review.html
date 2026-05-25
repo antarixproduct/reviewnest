@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Share Your Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2563eb;
+      --blue-light: #eff6ff;
+      --green: #10b981;
+      --green-light: #ecfdf5;
+      --red: #ef4444;
+      --red-light: #fef2f2;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 4px 32px rgba(15,23,42,0.08);
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .logo-text {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--text);
+    }
+
+    .biz-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .biz-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      object-fit: contain;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      margin-bottom: 14px;
+    }
+
+    .business-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .business-type {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 36px;
+    }
+
+    .stars-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .star {
+      font-size: 44px;
+      cursor: pointer;
+      color: #525252;
+      transition: transform 0.15s ease, color 0.15s ease;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .star:hover, .star.active {
+      color: #f59e0b;
+      transform: scale(1.15);
+    }
+
+    .star.active {
+      transform: scale(1.2);
+    }
+
+    /* Feedback form */
+    .feedback-section {
+      display: none;
+      text-align: left;
+      animation: fadeUp 0.3s ease forwards;
+    }
+
+    .feedback-section.visible { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .feedback-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .feedback-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    textarea {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text);
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 14px;
+      background: var(--bg);
+    }
+
+    textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--blue);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .checkbox-label {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .google-review-link-wrap {
+      display: none;
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .google-review-link-wrap.visible { display: block; }
+
+    .google-review-link-title {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .google-review-link {
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 15px;
+      border-radius: 14px;
+      border: none;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+      color: white;
+      box-shadow: 0 4px 16px rgba(37,99,235,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37,99,235,0.4);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* Success state */
+    .success-section {
+      display: none;
+      text-align: center;
+      animation: fadeUp 0.3s ease forwards;
+    }
+
+    .success-section.visible { display: block; }
+
+    .success-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+      animation: bounce 0.5s ease;
+    }
+
+    @keyframes bounce {
+      0% { transform: scale(0.5); opacity: 0; }
+      60% { transform: scale(1.15); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .success-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .success-sub {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Loading */
+    .loading {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Error */
+    .error-section {
+      text-align: center;
+    }
+
+    .error-icon { font-size: 48px; margin-bottom: 16px; }
+    .error-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .error-sub { font-size: 13px; color: var(--muted); }
+
+    .powered {
+      margin-top: 24px;
+      font-size: 12px;
+      color: #0076CE;
+      font-weight: 500;
+    }
+
+    .powered a { color: #0076CE; text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <!-- Loading state -->
+  <div id="loading" class="loading">
+    <p>Loading...</p>
+  </div>
+
+  <!-- Error state -->
+  <div id="error" style="display:none;" class="error-section">
+    <div class="error-icon">🔗</div>
+    <p class="error-title">Invalid Link</p>
+    <p class="error-sub" id="errorSub">This review link is invalid or has expired.</p>
+  </div>
+
+  <!-- Main rating UI -->
+  <div id="main" style="display:none;">
+
+    <!-- Business header -->
+    <div class="biz-header">
+      <p class="business-name" id="businessName">Business Name</p>
+      <p class="business-type" id="businessType"></p>
+    </div>
+
+    <p class="subtitle">How was your experience with us?</p>
+
+    <p class="stars-label">Tap to rate</p>
+    <div class="stars" id="stars">
+      <span class="star" data-value="1">★</span>
+      <span class="star" data-value="2">★</span>
+      <span class="star" data-value="3">★</span>
+      <span class="star" data-value="4">★</span>
+      <span class="star" data-value="5">★</span>
+    </div>
+
+    <!-- Feedback form (1-3 stars) -->
+    <div class="feedback-section" id="feedbackSection">
+      <p class="feedback-title">We're sorry to hear that 😔</p>
+      <p class="feedback-sub">Please tell us what went wrong so we can improve.</p>
+      <textarea
+        id="feedbackText"
+        rows="4"
+        placeholder="What could we do better? Your feedback helps us improve..."
+      ></textarea>
+      <label class="checkbox-row">
+        <input type="checkbox" id="allowContact" />
+        <span class="checkbox-label">Allow the business to contact me about this feedback</span>
+      </label>
+      <button class="btn btn-primary" id="submitFeedbackBtn" onclick="submitFeedback()">
+        Submit Feedback
+      </button>
+      <div class="google-review-link-wrap" id="googleReviewLinkWrap">
+        <p class="google-review-link-title">You can also leave a review on Google</p>
+        <a class="google-review-link" id="googleReviewLink" href="#" target="_blank" rel="noopener noreferrer">Open Google review page</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success state -->
+  <div class="success-section" id="successSection">
+    <div class="success-icon" id="successIcon">🎉</div>
+    <p class="success-title" id="successTitle">Thank you!</p>
+    <p class="success-sub" id="successSub">Your feedback means a lot to us.</p>
+  </div>
+</div>
+
+<p class="powered">Powered by <a href="#"><strong>ReviewNest</strong></a></p>
+
+<script>
+  const API_BASE = '/api';
+  let selectedRating = 0;
+  let currentToken = '';
+  let starThreshold = 4;
+  let googleReviewUrl = '';
+
+  // Extract token from URL
+  const path = window.location.pathname;
+  const token = path.split('/r/')[1]?.split('/')[0];
+
+  if (!token) {
+    showError();
+  } else {
+    currentToken = token;
+    loadReviewPage(token);
+  }
+
+  function toTitleCase(str) {
+    return str.replace(/\w\S*/g, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+  }
+
+  async function loadReviewPage(token) {
+    try {
+      const res = await fetch(`${API_BASE}/reviews/r/${token}`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Invalid link');
+
+      // Business name — always Title Case
+      const bizName = toTitleCase(data.businessName || '');
+      document.getElementById('businessName').textContent = bizName;
+      document.title = `Rate ${bizName}`;
+
+      // Business type — always Title Case (only show if set)
+      const typeEl = document.getElementById('businessType');
+      if (data.businessType) {
+        typeEl.textContent = toTitleCase(data.businessType);
+      }
+
+      starThreshold = data.starThreshold || 4;
+      googleReviewUrl = data.googleReviewUrl || '';
+      if (googleReviewUrl) {
+        document.getElementById('googleReviewLink').href = googleReviewUrl;
+        document.getElementById('googleReviewLinkWrap').classList.add('visible');
+      }
+
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('main').style.display = 'block';
+
+      setupStars();
+    } catch (err) {
+      showError(err.message);
+    }
+  }
+
+  function setupStars() {
+    const stars = document.querySelectorAll('.star');
+    stars.forEach((star) => {
+      star.addEventListener('click', () => {
+        selectedRating = parseInt(star.dataset.value);
+        highlightStars(selectedRating);
+        handleRating(selectedRating);
+      });
+
+      star.addEventListener('mouseover', () => {
+        highlightStars(parseInt(star.dataset.value));
+      });
+
+      star.addEventListener('mouseout', () => {
+        highlightStars(selectedRating);
+      });
+    });
+  }
+
+  function highlightStars(count) {
+    const stars = document.querySelectorAll('.star');
+    stars.forEach((star, i) => {
+      if (i < count) {
+        star.classList.add('active');
+      } else {
+        star.classList.remove('active');
+      }
+    });
+  }
+
+  async function handleRating(rating) {
+    try {
+      const res = await fetch(`${API_BASE}/reviews/r/${currentToken}/rate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ starRating: rating }),
+      });
+
+      const data = await res.json();
+
+      if (data.outcome === 'google') {
+        // Show success then redirect
+        showSuccess(
+          '🌟',
+          'Thank you so much!',
+          'Redirecting you to Google to leave a review...'
+        );
+        setTimeout(() => {
+          if (googleReviewUrl) {
+            window.location.href = googleReviewUrl;
+          }
+        }, 2000);
+      } else {
+        // Show feedback form
+        document.getElementById('feedbackSection').classList.add('visible');
+        document.getElementById('feedbackSection').scrollIntoView({ behavior: 'smooth' });
+      }
+    } catch (err) {
+      alert('Something went wrong. Please try again.');
+    }
+  }
+
+  async function submitFeedback() {
+    const message = document.getElementById('feedbackText').value.trim();
+    const allowContact = document.getElementById('allowContact').checked;
+
+    if (!message) {
+      document.getElementById('feedbackText').focus();
+      document.getElementById('feedbackText').style.borderColor = '#ef4444';
+      return;
+    }
+
+    const btn = document.getElementById('submitFeedbackBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    try {
+      const res = await fetch(`${API_BASE}/feedback/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token: currentToken,
+          message,
+          allowContact,
+        }),
+      });
+
+      if (!res.ok) throw new Error('Failed');
+
+      showSuccess(
+        '🙏',
+        'Feedback received!',
+        'We sincerely apologize for the inconvenience. Thank you for helping us improve. We\'ll work hard to ensure you have a much better experience next time.'
+      );
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Submit Feedback';
+      alert('Failed to submit. Please try again.');
+    }
+  }
+
+  function showSuccess(icon, title, sub) {
+    document.getElementById('main').style.display = 'none';
+    document.getElementById('successIcon').textContent = icon;
+    document.getElementById('successTitle').textContent = title;
+    document.getElementById('successSub').textContent = sub;
+    document.getElementById('successSection').classList.add('visible');
+  }
+
+  function showError(message) {
+    document.getElementById('loading').style.display = 'none';
+    if (message) {
+      document.getElementById('errorSub').textContent = message;
+    }
+    document.getElementById('error').style.display = 'block';
+  }
+</script>
+</body>
+</html>
