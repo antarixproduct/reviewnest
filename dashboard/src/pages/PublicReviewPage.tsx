@@ -205,6 +205,16 @@ export default function PublicReviewPage() {
                   >
                     {isSubmitting ? 'Submitting...' : 'Submit feedback'}
                   </button>
+                  {data.googleReviewUrl && (
+                    <a
+                      href={data.googleReviewUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 block w-full rounded-[8px] border border-slate-300 bg-white px-4 py-3 text-center text-sm font-bold text-slate-700 transition-colors hover:border-blue-500 hover:text-blue-700"
+                    >
+                      Leave a review on Google instead
+                    </a>
+                  )}
                 </div>
               )}
             </>
